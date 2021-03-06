@@ -1,0 +1,7 @@
+{
+  "name": "handshake",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
