@@ -1,7 +1,7 @@
 import { IonItem, IonInput } from '@ionic/react';
 import { useState } from 'react';
 
-async function Login() {
+const Login: React.FC = () => {
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
 
