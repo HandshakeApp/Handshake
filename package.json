@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "ionic serve",
+    "build": "ionic build",
+    "test": "react-scripts test"
   },
   "dependencies": {
     "@capacitor/core": "2.4.7",
