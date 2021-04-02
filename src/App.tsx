@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Menu from "./components/Menu/Menu";
-import Page from "./pages/Page";
 import Login from "./pages/Login";
 
 const App: React.FC = () => {
-    console.log(Login)
+    const [loggedIn, setLoggedIn] = useState(false);
+
     return (
         <IonApp>
             <IonReactRouter>
@@ -14,16 +15,16 @@ const App: React.FC = () => {
                     <Menu />
                     <IonRouterOutlet id="main">
                         <Switch>
+                            <Route path="/login" exact>
+                                <Login onLogin={() => setLoggedIn(true)}/>
+                            </Route>
                             <Route path="/" exact={true}>
                                 <Redirect to="/Home" />
                             </Route>
-                            <Route path="/Home" exact={true}>
-                                <Page >
+                            {/* <Route path="/Home" exact={true}>
                                     <Login/>
-                                </Page>
-                            </Route>
+                            </Route> */}
                             <Route path="/:name" exact={true}>
-                                <Page />
                             </Route>
                         </Switch>
                     </IonRouterOutlet>
