@@ -15,14 +15,14 @@ const App: React.FC = () => {
                     <IonRouterOutlet id="main">
                         <Switch>
                             <Route path="/" exact={true}>
-                                <Redirect to="/page/Home" />
+                                <Redirect to="/Home" />
                             </Route>
-                            <Route path="/page/Home" exact={true}>
+                            <Route path="/Home" exact={true}>
                                 <Page >
                                     <Login/>
                                 </Page>
                             </Route>
-                            <Route path="/page/:name" exact={true}>
+                            <Route path="/:name" exact={true}>
                                 <Page />
                             </Route>
                         </Switch>
