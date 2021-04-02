@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import * as Realm from "realm-web";
 import { app } from "../util/mongodb";
 
 export const AuthContext = React.createContext({ loggedIn: false});

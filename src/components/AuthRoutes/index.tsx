@@ -3,12 +3,12 @@ import { Route } from "react-router-dom";
 import Login from "../../pages/Login";
 
 interface Props {
-    onLogin: () => void;
+    setLoggedIn: (value: boolean) => void;
 };
-const AuthRoutes: React.FC<Props> = ({ onLogin }) => {
+const AuthRoutes: React.FC<Props> = ({ setLoggedIn }) => {
     return(
         <Route path="/auth/login" exact>
-            <Login onLogin={onLogin}/>
+            <Login setLoggedIn={setLoggedIn}/>
         </Route>
     );
     

@@ -3,18 +3,30 @@ import { useState } from 'react';
 import { Redirect } from "react-router";
 import Page from "../Page";
 import { useAuth } from "../../util/auth";
+import { login } from "../../util/auth";
 
 interface Props {
-    onLogin: () => void;
+    setLoggedIn: (value: boolean) => void;
 }
 
-const Login: React.FC<Props> = ({ onLogin }) => {
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
+const Login: React.FC<Props> = ({ setLoggedIn }) => {
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const { loggedIn } = useAuth();
     if(loggedIn) {
         return <Redirect to="/Home"/>
+    }
+
+    const doLogin = async () => {
+        try{
+            const user = await login(email, password);
+            if(user) {
+                setLoggedIn(true);
+            }
+        } catch(err) {
+            console.log(err);
+        }
     }
 
     return(
@@ -31,7 +43,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
                             onIonChange={e => setPassword(e.detail.value!)}>
                         </IonInput>
                     </IonItem>
-                    <IonButton expand="block" onClick={onLogin}>
+                    <IonButton expand="block" onClick={() => doLogin()}>
                         Login
                     </IonButton>
                 </form>

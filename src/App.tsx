@@ -4,7 +4,6 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Route, Switch } from "react-router-dom";
 import { AuthContext } from "./util/auth";
 import Menu from "./components/Menu/Menu";
-
 import AuthRoutes from "./components/AuthRoutes";
 import AppRoutes from "./components/AppRoutes";
 
@@ -20,7 +19,7 @@ const App: React.FC = () => {
                         <IonRouterOutlet id="main">
                             <Switch>
                                 <Route path="/auth">
-                                    <AuthRoutes onLogin={() => setLoggedIn(true)}/>
+                                    <AuthRoutes setLoggedIn={setLoggedIn}/>
                                 </Route>
                                 <Route path="/">
                                     <AppRoutes />
