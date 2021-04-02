@@ -1,35 +1,35 @@
 import { useState } from "react";
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { AuthContext } from "./auth";
 import Menu from "./components/Menu/Menu";
-import Login from "./pages/Login";
+
+import AuthRoutes from "./components/AuthRoutes";
+import AppMenuItems from "./components/AppRoutes";
 
 const App: React.FC = () => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     return (
         <IonApp>
-            <IonReactRouter>
-                <IonSplitPane contentId="main">
-                    <Menu />
-                    <IonRouterOutlet id="main">
-                        <Switch>
-                            <Route path="/login" exact>
-                                <Login onLogin={() => setLoggedIn(true)}/>
-                            </Route>
-                            <Route path="/" exact={true}>
-                                <Redirect to="/Home" />
-                            </Route>
-                            {/* <Route path="/Home" exact={true}>
-                                    <Login/>
-                            </Route> */}
-                            <Route path="/:name" exact={true}>
-                            </Route>
-                        </Switch>
-                    </IonRouterOutlet>
-                </IonSplitPane>
-            </IonReactRouter>
+            <AuthContext.Provider value={{ loggedIn }}>
+                <IonReactRouter>
+                    <IonSplitPane contentId="main">
+                        {loggedIn && <Menu /> }
+                        <IonRouterOutlet id="main">
+                            <Switch>
+                                <Route path="/auth">
+                                    <AuthRoutes onLogin={() => setLoggedIn(true)}/>
+                                </Route>
+                                <Route path="/">
+                                    <AppMenuItems />
+                                </Route>
+                            </Switch>
+                        </IonRouterOutlet>
+                    </IonSplitPane>
+                </IonReactRouter>
+            </AuthContext.Provider>
         </IonApp>
     );
 };
