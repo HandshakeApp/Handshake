@@ -2,9 +2,12 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 import { useParams } from 'react-router';
 import './Page.css';
 
-const Page: React.FC = (props: any) => {
+interface Props {
+	name: string;
+}
+const Page: React.FC<Props> = (props) => {
 
-	const { name } = useParams<{ name: string; }>();
+	const { name } = useParams<Props>();
 
 	return (
 		<IonPage>
