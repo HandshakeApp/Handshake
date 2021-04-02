@@ -6,7 +6,7 @@ import { AuthContext } from "./auth";
 import Menu from "./components/Menu/Menu";
 
 import AuthRoutes from "./components/AuthRoutes";
-import AppMenuItems from "./components/AppRoutes";
+import AppRoutes from "./components/AppRoutes";
 
 const App: React.FC = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -23,7 +23,7 @@ const App: React.FC = () => {
                                     <AuthRoutes onLogin={() => setLoggedIn(true)}/>
                                 </Route>
                                 <Route path="/">
-                                    <AppMenuItems />
+                                    <AppRoutes />
                                 </Route>
                             </Switch>
                         </IonRouterOutlet>
