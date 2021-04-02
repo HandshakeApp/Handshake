@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route, Switch } from "react-router-dom";
-import { AuthContext } from "./auth";
+import { AuthContext } from "./util/auth";
 import Menu from "./components/Menu/Menu";
 
 import AuthRoutes from "./components/AuthRoutes";

@@ -2,7 +2,7 @@ import { IonItem, IonInput, IonContent, IonButton } from '@ionic/react';
 import { useState } from 'react';
 import { Redirect } from "react-router";
 import Page from "../Page";
-import { useAuth } from "../../auth";
+import { useAuth } from "../../util/auth";
 
 interface Props {
     onLogin: () => void;
