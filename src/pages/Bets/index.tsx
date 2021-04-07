@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Page from "../Page";
-import { getUser } from "../../util/mongodb";
 import { getBets } from "../../util/bets";
 
 
