@@ -5,25 +5,19 @@ import Page from "../Page";
 import { useAuth } from "../../util/auth";
 import { login } from "../../util/auth";
 
-interface Props {
-    setLoggedIn: (value: boolean) => void;
-}
 
-const Login: React.FC<Props> = ({ setLoggedIn }) => {
+const Login: React.FC = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
     const { user } = useAuth();
-    if(user && user.isLoggedIn) {
+    if(user?.isLoggedIn) {
         return <Redirect to="/Home"/>
     }
 
     const doLogin = async () => {
         try{
-            const user = await login(email, password);
-            if(user) {
-                setLoggedIn(user.isLoggedIn);
-            }
+            await login(email, password);
         } catch(err) {
             console.log(err);
         }

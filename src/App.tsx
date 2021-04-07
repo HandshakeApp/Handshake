@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { IonApp, IonRouterOutlet, IonSplitPane } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route, Switch } from "react-router-dom";
@@ -9,7 +8,6 @@ import AppRoutes from "./components/AppRoutes";
 import { getUser } from "./util/mongodb";
 
 const App: React.FC = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
     const user = getUser();
 
     return (
@@ -21,7 +19,7 @@ const App: React.FC = () => {
                         <IonRouterOutlet id="main">
                             <Switch>
                                 <Route path="/auth">
-                                    <AuthRoutes setLoggedIn={setLoggedIn}/>
+                                    <AuthRoutes />
                                 </Route>
                                 <Route path="/">
                                     <AppRoutes />
