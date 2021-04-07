@@ -6,16 +6,18 @@ import { AuthContext } from "./util/auth";
 import Menu from "./components/Menu/Menu";
 import AuthRoutes from "./components/AuthRoutes";
 import AppRoutes from "./components/AppRoutes";
+import { getUser } from "./util/mongodb";
 
 const App: React.FC = () => {
     const [loggedIn, setLoggedIn] = useState(false);
+    const user = getUser();
 
     return (
         <IonApp>
-            <AuthContext.Provider value={{ loggedIn }}>
+            <AuthContext.Provider value={{ user }}>
                 <IonReactRouter>
                     <IonSplitPane contentId="main">
-                        {loggedIn && <Menu /> }
+                        {user.isLoggedIn && <Menu /> }
                         <IonRouterOutlet id="main">
                             <Switch>
                                 <Route path="/auth">

@@ -13,8 +13,8 @@ const Login: React.FC<Props> = ({ setLoggedIn }) => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { loggedIn } = useAuth();
-    if(loggedIn) {
+    const { user } = useAuth();
+    if(user && user.isLoggedIn) {
         return <Redirect to="/Home"/>
     }
 
@@ -22,7 +22,7 @@ const Login: React.FC<Props> = ({ setLoggedIn }) => {
         try{
             const user = await login(email, password);
             if(user) {
-                setLoggedIn(true);
+                setLoggedIn(user.isLoggedIn);
             }
         } catch(err) {
             console.log(err);

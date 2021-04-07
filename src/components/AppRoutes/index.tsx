@@ -5,8 +5,8 @@ import Bets from "../../pages/Bets";
 
 
 const AppMenuItems: React.FC = () => {
-    const { loggedIn } = useAuth();
-	if(!loggedIn) {
+    const { user } = useAuth();
+	if(!user?.isLoggedIn) {
 		return (
 			<Redirect to="/auth/login"/>
 		)
