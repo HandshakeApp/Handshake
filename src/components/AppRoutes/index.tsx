@@ -1,6 +1,7 @@
 import { Redirect, Route } from "react-router-dom";
 import { useAuth } from "../../util/auth";
 import Home from "../../pages/Home";
+import Bets from "../../pages/Bets";
 
 
 const AppMenuItems: React.FC = () => {
@@ -14,6 +15,9 @@ const AppMenuItems: React.FC = () => {
         <>
             <Route path="/Home" exact={true}>
                 <Home/>
+            </Route>
+            <Route path="/Bets" exact={true}>
+                <Bets/>
             </Route>
             <Route path="/:name" exact={true}>
             </Route>
