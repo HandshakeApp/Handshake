@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
 import Page from "../Page";
-import { app } from "../../util/mongodb";
+import { getUser } from "../../util/mongodb";
 import { getBets } from "../../util/bets";
 
 
 const Bets: React.FC = () => {
     const [ bets, setBets ] = useState([]);
-    const user: Realm.User = app.currentUser as Realm.User;
 
     useEffect(() => {
         const getBetsAsync = async () => {
-            const bets = await getBets(user);
+            const bets = await getBets();
             setBets(bets);
         }
         getBetsAsync();
         
-    }, [user]);
+    }, []);
 
     return(
         <Page name="My Bets">

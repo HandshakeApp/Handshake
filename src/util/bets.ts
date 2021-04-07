@@ -1,6 +1,7 @@
-import { getDb } from "../util/mongodb";
+import { getDb, getUser } from "../util/mongodb";
 
-export const getBets = async (user) => {
+export const getBets = async () => {
+    const user = getUser();
     try{
         const bets = await getDb(user).collection("Bets").find({
             proposer: user.id
