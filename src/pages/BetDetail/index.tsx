@@ -13,21 +13,30 @@ const BetDetail: React.FC = () => {
     const { id } = useParams<Params>();
 
     const [loading, setLoading] = useState(true);
-    const [bet, setBet] = useState([]);
+    const [bet, setBet] = useState(null);
 
     const initialiseBet = useCallback(async () => {
-        const bets = getBetById(id);
+        const bet = await getBetById(id);
         setLoading(false);
-        return bets;
-    }, []);
+        return bet;
+    }, [id]);
 
     useAsync(initialiseBet, setBet);
 
     let content;
-    if (loading) {
+    if(loading || !bet) {
         content = <Spinner/>;
     } else {
-        content = <div> sdkfugdj</div>
+        content = (
+            <main>
+                <h1>
+                    {bet.subject}
+                </h1>
+                <p>
+                    {bet.description}
+                </p>
+            </main>
+        );
     }
 
     return(

@@ -17,7 +17,7 @@ const Page: React.FC<Props> = (props) => {
 				</IonToolbar>
 			</IonHeader>
 
-			<IonContent fullscreen>
+			<IonContent fullscreen className="ion-padding">
 				<IonHeader collapse="condense">
 					<IonToolbar>
 						<IonTitle size="large">{props.name}</IonTitle>

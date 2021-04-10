@@ -7,7 +7,7 @@ export const getBetById = async (id) => {
         const bet = await getDb(user).collection("Bets").find({
             _id: ObjectId(id)
         });
-        return bet;
+        return bet[0];
     } catch(err) {
         console.log(err);
     }
