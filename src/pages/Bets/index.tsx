@@ -20,11 +20,11 @@ const Bets: React.FC = () => {
     }, []);
 
     const listItems = bets.map(bet => (
-        <IonItem key={bet._id} >
+        <IonItem key={bet._id} onClick={() => alert()}>
             <IonLabel>
                 <h1 className={styles.Heading}>
                     {bet.subject}
-                    <IonIcon slot="end" ios={chevronForward} md={chevronForward} size="large" /> {/*className={styles.Chevron}*/}
+                    <IonIcon slot="end" ios={chevronForward} md={chevronForward} size="large" />
                 </h1>
             </IonLabel>
         </IonItem>
