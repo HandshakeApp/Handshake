@@ -1,4 +1,4 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { useAuth } from "../../util/auth";
 import Home from "../../pages/Home";
 import Bets from "../../pages/Bets";
@@ -13,7 +13,8 @@ const AppMenuItems: React.FC = () => {
 	}
     return(
         <>
-            <Redirect from="/" to="/Home"/>
+        <Switch>
+            <Redirect exact path="/" to="/Home"/>
             <Route path="/Home">
                 <Home/>
             </Route>
@@ -22,6 +23,7 @@ const AppMenuItems: React.FC = () => {
             </Route>
             <Route path="/:name">
             </Route>
+        </Switch>
         </>
     );
 };
