@@ -1,7 +1,10 @@
-import { IonItem, IonLabel, IonList, IonListHeader } from "@ionic/react";
+import { IonIcon, IonItem, IonLabel, IonList } from "@ionic/react";
+import { chevronForward } from "ionicons/icons";
 import { useState, useEffect } from "react";
 import Page from "../Page";
 import { getBets } from "../../util/bets";
+
+import styles from "./Bets.module.css";
 
 
 const Bets: React.FC = () => {
@@ -19,12 +22,10 @@ const Bets: React.FC = () => {
     const listItems = bets.map(bet => (
         <IonItem key={bet._id} >
             <IonLabel>
-                <h2>
+                <h1 className={styles.Heading}>
                     {bet.subject}
-                </h2>
-                <p>
-                    {bet.description}
-                </p>
+                    <IonIcon slot="end" ios={chevronForward} md={chevronForward} size="large" /> {/*className={styles.Chevron}*/}
+                </h1>
             </IonLabel>
         </IonItem>
     ));
