@@ -1,6 +1,6 @@
 import { IonIcon, IonItem, IonLabel, IonList, IonSpinner } from "@ionic/react";
 import { chevronForward } from "ionicons/icons";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import Page from "../Page";
 import { getBets } from "../../util/bets";
@@ -9,15 +9,18 @@ import useAsync from "../../hooks/useAsync";
 import styles from "./Bets.module.css";
 
 const Bets: React.FC = () => {
+    console.log("RENDER");
     const history = useHistory();
     const [loading, setLoading] = useState(true);
     const [bets, setBets] = useState([]);
 
-    useAsync(async () => {
+    const initialiseBets = useCallback(async () => {
         const bets = getBets();
         setLoading(false);
         return bets;
-    }, setBets);
+    }, []);
+    
+    useAsync(initialiseBets, setBets);
 
     const goToBetDetail = (betId) => {
         history.push(`/Bets/${betId}`);
