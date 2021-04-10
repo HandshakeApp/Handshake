@@ -1,8 +1,9 @@
-import { IonIcon, IonItem, IonLabel, IonList, IonSpinner } from "@ionic/react";
+import { IonIcon, IonItem, IonLabel, IonList } from "@ionic/react";
 import { chevronForward } from "ionicons/icons";
 import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import Page from "../Page";
+import Spinner from "../../components/Spinner/Spinner";
 import { getBets } from "../../util/bets";
 import useAsync from "../../hooks/useAsync";
 
@@ -44,11 +45,7 @@ const Bets: React.FC = () => {
 
     let content;
     if (loading) {
-        content = (
-            <div className={styles.Spinner}>
-                <IonSpinner />
-            </div>
-        );
+        content = <Spinner/>;
     } else {
         content = (
             <IonList>
