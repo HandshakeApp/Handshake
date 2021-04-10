@@ -12,6 +12,8 @@
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
     "ionicons": "^5.4.0",
+    "mongodb": "^3.6.6",
+    "mongodb-client-encryption": "^1.2.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
