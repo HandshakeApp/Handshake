@@ -13,13 +13,14 @@ const AppMenuItems: React.FC = () => {
 	}
     return(
         <>
-            <Route path="/Home" exact={true}>
+            <Redirect from="/" to="/Home"/>
+            <Route path="/Home">
                 <Home/>
             </Route>
-            <Route path="/Bets" exact={true}>
+            <Route path="/Bets">
                 <Bets/>
             </Route>
-            <Route path="/:name" exact={true}>
+            <Route path="/:name">
             </Route>
         </>
     );
