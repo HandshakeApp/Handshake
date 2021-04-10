@@ -1,37 +1,59 @@
-import { IonIcon, IonItem, IonLabel, IonList } from "@ionic/react";
+import { IonIcon, IonItem, IonLabel, IonList, IonSpinner } from "@ionic/react";
 import { chevronForward } from "ionicons/icons";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Page from "../Page";
 import { getBets } from "../../util/bets";
 import useAsync from "../../hooks/useAsync";
 
 import styles from "./Bets.module.css";
 
-
 const Bets: React.FC = () => {
-    const [ bets, setBets ] = useState([]);
+    const history = useHistory();
+    const [loading, setLoading] = useState(true);
+    const [bets, setBets] = useState([]);
 
-    useAsync(getBets, setBets);
+    useAsync(async () => {
+        const bets = getBets();
+        setLoading(false);
+        return bets;
+    }, setBets);
 
-    const listItems = bets.map(bet => (
-        <IonItem key={bet._id} onClick={() => alert()}>
+    const goToBetDetail = (betId) => {
+        history.push(`/Bets/${betId}`);
+    }
+
+    const listItems = bets.map((bet) => (
+        <IonItem key={bet._id} onClick={() => goToBetDetail(bet._id)}>
             <IonLabel>
                 <h1 className={styles.Heading}>
                     {bet.subject}
-                    <IonIcon slot="end" ios={chevronForward} md={chevronForward} size="large" />
+                    <IonIcon
+                        slot="end"
+                        ios={chevronForward}
+                        md={chevronForward}
+                        size="large"
+                    />
                 </h1>
-                <p>
-                    {bet.description}
-                </p>
+                <p>{bet.description}</p>
             </IonLabel>
         </IonItem>
     ));
 
-    return(
-        <Page name="My Bets">
+    let content;
+    if (loading) {
+        content = <IonSpinner />;
+    } else {
+        content = (
             <IonList>
                 {listItems}
             </IonList>
+        );
+    }
+
+    return (
+        <Page name="My Bets">
+            {content}
         </Page>
     );
 };
