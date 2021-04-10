@@ -1,3 +1,4 @@
+import { IonItem, IonLabel, IonList, IonListHeader } from "@ionic/react";
 import { useState, useEffect } from "react";
 import Page from "../Page";
 import { getBets } from "../../util/bets";
@@ -15,13 +16,24 @@ const Bets: React.FC = () => {
         
     }, []);
 
+    const listItems = bets.map(bet => (
+        <IonItem key={bet._id} >
+            <IonLabel>
+                <h2>
+                    {bet.subject}
+                </h2>
+                <p>
+                    {bet.description}
+                </p>
+            </IonLabel>
+        </IonItem>
+    ));
+
     return(
         <Page name="My Bets">
-            <ul>
-                {bets.map(bet => (
-                    <li key={bet._id}>{bet.subject}</li>
-                ))}
-            </ul>
+            <IonList>
+                {listItems}
+            </IonList>
         </Page>
     );
 };
