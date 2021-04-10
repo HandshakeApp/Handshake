@@ -9,7 +9,6 @@ import useAsync from "../../hooks/useAsync";
 import styles from "./Bets.module.css";
 
 const Bets: React.FC = () => {
-    console.log("RENDER");
     const history = useHistory();
     const [loading, setLoading] = useState(true);
     const [bets, setBets] = useState([]);
@@ -19,7 +18,7 @@ const Bets: React.FC = () => {
         setLoading(false);
         return bets;
     }, []);
-    
+
     useAsync(initialiseBets, setBets);
 
     const goToBetDetail = (betId) => {
@@ -45,7 +44,11 @@ const Bets: React.FC = () => {
 
     let content;
     if (loading) {
-        content = <IonSpinner />;
+        content = (
+            <div className={styles.Spinner}>
+                <IonSpinner />
+            </div>
+        );
     } else {
         content = (
             <IonList>
