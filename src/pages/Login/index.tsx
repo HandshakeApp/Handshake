@@ -9,7 +9,7 @@ import { login } from "../../util/auth";
 const Login: React.FC = () => {
     const { user } = useAuth();
 
-    const [ loggedIn, setLoggedIn ] = useState<boolean>(user.isLoggedIn || false);
+    const [loggedIn, setLoggedIn] = useState<boolean>(user.isLoggedIn || false);
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
@@ -21,6 +21,7 @@ const Login: React.FC = () => {
                 setLoggedIn(true);
             }
         } catch(err) {
+            setLoggedIn(false);
             console.log(err);
         }
     }
