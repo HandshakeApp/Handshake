@@ -15,7 +15,7 @@ const App: React.FC = () => {
             <AuthContext.Provider value={{ user }}>
                 <IonReactRouter>
                     <IonSplitPane contentId="main">
-                        {user.isLoggedIn && <Menu /> }
+                        {user?.isLoggedIn && <Menu /> }
                         <IonRouterOutlet id="main">
                             <Switch>
                                 <Route path="/auth">
