@@ -14,7 +14,8 @@ import {
 	home,
 	people,
     settings,
-    albums
+    albums,
+    logOut
 } from "ionicons/icons";
 import "./Menu.css";
 
@@ -49,6 +50,12 @@ const appPages: AppPage[] = [
         url: "/Settings",
         iosIcon: settings,
         mdIcon: settings,
+    },
+    {
+        title: "Log out",
+        url: "/auth/logout",
+        iosIcon: logOut,
+        mdIcon: logOut,
     }
 ];
 
