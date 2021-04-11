@@ -10,7 +10,7 @@ import Spinner from '../../components/Spinner/Spinner';
 const Login: React.FC = () => {
     const { user } = useAuth();
 
-    const [loggedIn, setLoggedIn] = useState<boolean>(user.isLoggedIn || false);
+    const [loggedIn, setLoggedIn] = useState<boolean>(user?.isLoggedIn || false);
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
@@ -29,6 +29,7 @@ const Login: React.FC = () => {
 
     let content;
     if(loggedIn) {
+        console.log("LOGGED IN ", loggedIn);
         content = <Redirect to="/Home"/>;
     } else {
         content = (
