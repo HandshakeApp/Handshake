@@ -4,6 +4,7 @@ import { Redirect } from "react-router";
 import Page from "../Page";
 import { useAuth } from "../../util/auth";
 import { login } from "../../util/auth";
+import Spinner from '../../components/Spinner/Spinner';
 
 
 const Login: React.FC = () => {
@@ -47,6 +48,7 @@ const Login: React.FC = () => {
                         <IonButton type="submit" expand="block" >
                             Login
                         </IonButton>
+                        {loggedIn && <Spinner/>}
                     </form>
                 </IonContent>
             </Page>
