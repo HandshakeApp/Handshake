@@ -7,44 +7,52 @@ import { login } from "../../util/auth";
 
 
 const Login: React.FC = () => {
+    const { user } = useAuth();
+
+    const [ loggedIn, setLoggedIn ] = useState<boolean>(user.isLoggedIn || false);
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
-    const { user } = useAuth();
-    if(user?.isLoggedIn) {
-        return <Redirect to="/Home"/>
-    }
-
-    const doLogin = async () => {
+    const doLogin = async (e) => {
+        e.preventDefault();
         try{
-            await login(email, password);
+            const user = await login(email, password);
+            if(user) {
+                setLoggedIn(true);
+            }
         } catch(err) {
             console.log(err);
         }
     }
 
-    return(
-        <Page name="Login">
-            <IonContent className="ion-padding">
-                <form>
-                    <IonItem>
-                        <IonInput value={email} placeholder="Enter email" 
-                            onIonChange={e => setEmail(e.detail.value!)}>
-                        </IonInput>
-                    </IonItem>
-                    <IonItem>
-                        <IonInput type="password" value={password} placeholder="Enter password" 
-                            onIonChange={e => setPassword(e.detail.value!)}>
-                        </IonInput>
-                    </IonItem>
-                    <IonButton expand="block" onClick={() => doLogin()}>
-                        Login
-                    </IonButton>
-                </form>
-            </IonContent>
-        </Page>
-        
-    );
+    let content;
+    if(loggedIn) {
+        content = <Redirect to="/Home"/>;
+    } else {
+        content = (
+            <Page name="Login">
+                <IonContent className="ion-padding">
+                    <form onSubmit={(e) => doLogin(e)}>
+                        <IonItem>
+                            <IonInput value={email} placeholder="Enter email" 
+                                onIonChange={e => setEmail(e.detail.value!)}>
+                            </IonInput>
+                        </IonItem>
+                        <IonItem>
+                            <IonInput type="password" value={password} placeholder="Enter password" 
+                                onIonChange={e => setPassword(e.detail.value!)}>
+                            </IonInput>
+                        </IonItem>
+                        <IonButton type="submit" expand="block" >
+                            Login
+                        </IonButton>
+                    </form>
+                </IonContent>
+            </Page>
+        );
+    }
+
+    return content;
 };
 
 export default Login;
