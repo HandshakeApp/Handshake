@@ -1,6 +1,7 @@
 import { Route } from "react-router-dom";
 
 import Login from "../../pages/Login";
+import Signup from "../../pages/Signup";
 import Logout from "../../pages/Logout";
 
 const AuthRoutes: React.FC = () => {
@@ -8,6 +9,9 @@ const AuthRoutes: React.FC = () => {
         <>
             <Route path="/auth/login" exact>
                 <Login />
+            </Route>
+            <Route path="/auth/signup" exact>
+                <Signup />
             </Route>
             <Route path="/auth/logout" exact>
                 <Logout />
