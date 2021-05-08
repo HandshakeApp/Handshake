@@ -7,6 +7,8 @@ import AuthRoutes from "./components/AuthRoutes";
 import AppRoutes from "./components/AppRoutes";
 import { getUser } from "./util/mongodb";
 
+import "./globals.css";
+
 const App: React.FC = () => {
     const user = getUser();
 
