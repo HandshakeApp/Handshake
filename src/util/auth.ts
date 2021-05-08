@@ -19,6 +19,10 @@ export async function login(email: string, password: string) {
     }
 };
 
+export async function signup(fields) {
+    await app.emailPasswordAuth.registerUser(fields.email, fields.password);
+}
+
 export async function logout() {
     try {
         await getUser().logOut();
