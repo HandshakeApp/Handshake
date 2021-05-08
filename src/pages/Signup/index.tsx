@@ -3,14 +3,13 @@ import { useState } from 'react';
 import { Redirect } from "react-router";
 import Page from "../Page";
 import { useAuth } from "../../util/auth";
-import { login } from "../../util/auth";
 import Spinner from '../../components/Spinner/Spinner';
 
 
 const Signup: React.FC = () => {
     const { user } = useAuth();
 
-    const [loggedIn, setLoggedIn] = useState<boolean>(user?.isLoggedIn || false);
+    const [loggedIn] = useState<boolean>(user?.isLoggedIn || false);
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
