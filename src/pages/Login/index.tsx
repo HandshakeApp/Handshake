@@ -1,4 +1,4 @@
-import { IonItem, IonInput, IonContent, IonButton } from '@ionic/react';
+import { IonItem, IonInput, IonLabel, IonContent, IonButton, IonRouterLink } from '@ionic/react';
 import { useState } from 'react';
 import { Redirect } from "react-router";
 import Page from "../Page";
@@ -29,7 +29,6 @@ const Login: React.FC = () => {
 
     let content;
     if(loggedIn) {
-        console.log("LOGGED IN ", loggedIn);
         content = <Redirect to="/Home"/>;
     } else {
         content = (
@@ -37,19 +36,23 @@ const Login: React.FC = () => {
                 <IonContent className="ion-padding">
                     <form onSubmit={(e) => doLogin(e)}>
                         <IonItem>
-                            <IonInput value={email} placeholder="Enter email" 
-                                onIonChange={e => setEmail(e.detail.value!)}>
+                            <IonLabel position="stacked">Enter email</IonLabel>
+                            <IonInput value={email} onIonChange={e => setEmail(e.detail.value)}>
                             </IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonInput type="password" value={password} placeholder="Enter password" 
-                                onIonChange={e => setPassword(e.detail.value!)}>
+                            <IonLabel position="stacked">Enter password</IonLabel>
+                            <IonInput type="password" value={password} onIonChange={e => setPassword(e.detail.value)}>
                             </IonInput>
                         </IonItem>
                         <IonButton type="submit" expand="block" >
                             Login
                         </IonButton>
                         {loggedIn && <Spinner/>}
+                        <p className="text-centre">
+                            Don't have an account? 
+                            <IonRouterLink href="/auth/signup">Sign up</IonRouterLink>
+                        </p>
                     </form>
                 </IonContent>
             </Page>
