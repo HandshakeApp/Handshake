@@ -2,7 +2,7 @@ import { IonItem, IonInput, IonLabel, IonContent, IonButton, IonRouterLink } fro
 import { useState } from 'react';
 import { Redirect } from "react-router";
 import Page from "../Page";
-import { useAuth } from "../../util/auth";
+import { useAuth, signup } from "../../util/auth";
 import Spinner from '../../components/Spinner/Spinner';
 
 
@@ -14,13 +14,23 @@ const Signup: React.FC = () => {
     const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [confirmPassword, setConfirmPassword] = useState<string>("");
 
     const doSignup = async (e) => {
         e.preventDefault();
         try{
-
+            if(password === confirmPassword){
+                await signup({
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                });
+            } else {
+                throw new Error("Your passwords must match")
+            }
         } catch(err) {
-
+            console.log(err);
         }
     }
 
@@ -55,7 +65,8 @@ const Signup: React.FC = () => {
                         </IonItem>
                         <IonItem>
                             <IonLabel position="stacked">Confirm password</IonLabel>
-                            <IonInput type="password" value={password}>
+                            <IonInput type="password" value={confirmPassword} 
+                                onIonChange={e => setConfirmPassword(e.detail.value)}>
                             </IonInput>
                         </IonItem>
                         <IonButton type="submit" expand="block" >
