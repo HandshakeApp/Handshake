@@ -6,7 +6,7 @@ export const app: Realm.App = new Realm.App({
 
 export const getUser = () => {
     return app.currentUser;
-}
+};
 
 export const getDb = (user) => {
     return user.mongoClient("mongodb-atlas").db("Handshake");

@@ -46,6 +46,12 @@ const Bets: React.FC = () => {
     let content;
     if (loading) {
         content = <Spinner/>;
+    } else if(bets.length === 0) {
+        content = (
+            <h4 className="text-centre">
+                You don't have any bets yet
+            </h4>
+        )
     } else {
         content = (
             <IonList>
