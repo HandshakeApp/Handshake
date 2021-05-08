@@ -36,12 +36,12 @@ const Login: React.FC = () => {
                 <IonContent className="ion-padding">
                     <form onSubmit={(e) => doLogin(e)}>
                         <IonItem>
-                            <IonLabel position="stacked">Enter email</IonLabel>
+                            <IonLabel position="stacked">Email</IonLabel>
                             <IonInput value={email} onIonChange={e => setEmail(e.detail.value)}>
                             </IonInput>
                         </IonItem>
                         <IonItem>
-                            <IonLabel position="stacked">Enter password</IonLabel>
+                            <IonLabel position="stacked">Password</IonLabel>
                             <IonInput type="password" value={password} onIonChange={e => setPassword(e.detail.value)}>
                             </IonInput>
                         </IonItem>
