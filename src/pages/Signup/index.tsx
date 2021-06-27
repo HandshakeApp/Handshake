@@ -1,6 +1,7 @@
 import { IonItem, IonInput, IonLabel, IonContent, IonButton, IonRouterLink } from '@ionic/react';
 import { useState } from 'react';
 import { Redirect } from "react-router";
+import { useHistory } from "react-router-dom";
 import Page from "../Page";
 import { useAuth, signup } from "../../util/auth";
 import Spinner from '../../components/Spinner/Spinner';
@@ -8,10 +9,9 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const Signup: React.FC = () => {
     const { user } = useAuth();
+    const history = useHistory();
 
     const [loggedIn] = useState<boolean>(user?.isLoggedIn || false);
-    const [firstName, setFirstName] = useState<string>("");
-    const [lastName, setLastName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -21,11 +21,11 @@ const Signup: React.FC = () => {
         try{
             if(password === confirmPassword){
                 await signup({
-                    firstName,
-                    lastName,
                     email,
                     password
                 });
+                history.push("/auth/login?isSignup=true");
+
             } else {
                 throw new Error("Your passwords must match")
             }
@@ -42,16 +42,6 @@ const Signup: React.FC = () => {
             <Page name="Sign up">
                 <IonContent className="ion-padding">
                     <form onSubmit={(e) => doSignup(e)}>
-                        <IonItem>
-                            <IonLabel position="stacked">First name</IonLabel>
-                            <IonInput value={firstName} onIonChange={e => setFirstName(e.detail.value)}>
-                            </IonInput>
-                        </IonItem>
-                        <IonItem>
-                            <IonLabel position="stacked">Last name</IonLabel>
-                            <IonInput value={lastName} onIonChange={e => setLastName(e.detail.value)}>
-                            </IonInput>
-                        </IonItem>
                         <IonItem>
                             <IonLabel position="stacked">Email</IonLabel>
                             <IonInput value={email} onIonChange={e => setEmail(e.detail.value)}>
@@ -76,6 +66,9 @@ const Signup: React.FC = () => {
                         <p className="text-centre">
                             Already have an account? 
                             <IonRouterLink href="/auth/login">Log in</IonRouterLink>
+                            <br/>
+                            <br/>
+                            After entering your details, you will be required to sign into the app
                         </p>
                     </form>
                 </IonContent>

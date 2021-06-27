@@ -1,6 +1,8 @@
 import { IonItem, IonInput, IonLabel, IonContent, IonButton, IonRouterLink } from '@ionic/react';
 import { useState } from 'react';
 import { Redirect } from "react-router";
+import { useLocation } from 'react-router-dom';
+import queryString from "query-string";
 import Page from "../Page";
 import { useAuth } from "../../util/auth";
 import { login } from "../../util/auth";
@@ -9,6 +11,10 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const Login: React.FC = () => {
     const { user } = useAuth();
+    const { search } = useLocation();
+
+    const queryParams = queryString.parse(search);
+    const isSignup = queryParams.isSignup === true;
 
     const [loggedIn, setLoggedIn] = useState<boolean>(user?.isLoggedIn || false);
     const [email, setEmail] = useState<string>("");
@@ -29,7 +35,8 @@ const Login: React.FC = () => {
 
     let content;
     if(loggedIn) {
-        content = <Redirect to="/Home"/>;
+        const redirect = `/Home?isSignup=${isSignup || false}`;
+        content = <Redirect to={redirect}/>;
     } else {
         content = (
             <Page name="Login">
